@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <title>DTES</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'media/dtes_logo.png' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/reading.css' %}">
+        <script type="text/javascript" src="{% static 'script/reading.js' %}"></script>
+    </head>
+    <body>
+        <div id="nav-bar">
+            <nav>
+                Hello,
+                <a id="profile-link" href="{% url 'profile' request.user.pk %}">{{request.user.username}}</a>
+                <a id="logout-link" href="{% url 'loggingout' %}">Log out</a>
+            </nav>
+        </div>
+        <a href="{% url 'subforum' post.category %}">
+            <button id="go-back">
+                Go back
+            </button>
+        </a>
+        <h1>
+            {% if post.category == 1 %}
+                Persian area
+            {% elif post.category == 2 %}
+                English area
+            {% elif post.category == 3 %}
+                Spanish area
+            {% endif %}
+        </h1>
+        <div id="main-container">
+            {% if messages %}
+                <h2>{{ post.caption }}</h2>
+                {% for i in messages %}
+                    <a href="{% url 'profile' i.author.pk %}">{{ i.author }}</a>
+                    -
+                    {{ i.date|date:"d/m/Y" }}
+                    {% if i.author == request.user %}
+                        -
+                        <a href="{% url 'editing' i.pk %}">
+                            <button>Edit</button>
+                        </a>
+                        -
+                        <a href="{% url 'deleting' i.pk %}">
+                            <button class="delete-button">Delete</button>
+                        </a>
+                    {% endif %}
+                    <div class="box">
+                        {{ i.text|safe }}
+                    </div>
+                {% endfor %}
+                
+            {% else %}
+                No messages yet.
+            {% endif %}
+        </div>
+        <div id="footer">
+            <button id="spoiler-button">
+                Reply
+            </button>
+            <div id="spoiler-container">
+                <form action="{% url 'reading' id_post %}" method="post">
+                    {% csrf_token %}
+                    <p>
+                        <textarea name="text" required></textarea>
+                    </p>
+                    <p>
+                        <input type="submit" value="Send reply">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

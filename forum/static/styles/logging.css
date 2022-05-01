@@ -1,0 +1,67 @@
+body {
+    font-family: tahoma;
+}
+
+#dtes_logo {
+    display: block;
+    margin: auto;
+    width: 10em;
+    height: 8em;
+    border: 1px solid #000; 
+    margin-bottom: 3em;
+}
+
+#main-container {
+    margin: auto;
+    width: 90%;
+}
+
+@media only screen and (min-width: 600px) {
+    #main-container {
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    #main-container {
+        width: 50%;
+    }
+}
+
+#main-container table {
+    width: 100%;
+}
+
+form {
+    width: 70%;
+    margin: auto;
+    background-color: #cce6ff;
+    border: 1px solid #b3b3b3;
+    padding: 0.5em;
+    text-align: center;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    padding: 0.25em;
+    font-weight: bold;
+    color: #fff;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+}
+
+#error-message {
+    margin: auto;
+    margin-top: 2em;
+    border: 1px solid #b3b3b3;
+    background-color: #ff9999;
+    text-align: center;
+    padding: 0.75em;
+    width: 50%;
+}

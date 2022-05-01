@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <title>DTES</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'media/dtes_logo.png' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/editing.css' %}">
+    </head>
+    <body>
+        <div id="nav-bar">
+            <nav>
+                Hello,
+                <a id="profile-link" href="{% url 'profile' request.user.pk %}">{{request.user.username}}</a>
+                <a id="logout-link" href="{% url 'loggingout' %}">Log out</a>
+            </nav>
+        </div>
+        <a href="{% url 'reading' message.post.pk %}">
+            <button id="go-back">
+                Go back
+            </button>
+        </a>
+        <div id="main-container">
+            <h1>Old text</h1>
+            {{ message.author }}
+            -
+            {{ message.date|date:"d/m/Y" }}
+            <div class="box">
+                {{ message.text|safe }}
+            </div>
+        </div>
+        <div id="footer">
+            <h2>New text</h2>
+            <form action="{% url 'editing' message.pk %}" method="post">
+                {% csrf_token %}
+                <p>
+                    <textarea name="text" required></textarea>
+                </p>
+                <p>
+                    <input type="submit" value="Send edition">
+                </p>
+            </form>
+            <div id="container-tags">
+                <h3>TAGS</h3>
+                [b] <b>Bold text</b> [/b]
+                <br/>
+                [u] <u>Underlined text</u> [/u]
+                </br><br/>
+                [center] Centered text [/center]
+                <br/><br/>
+                [hr] Horizontal separator
+            </div>
+        </div>
+    </body>
+</html>

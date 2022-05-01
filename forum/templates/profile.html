@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <title>DTES</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'media/dtes_logo.png' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/profile.css' %}">
+    </head>
+    <body>
+        <a href="{% url 'index' %}">
+            <button>
+                Home
+            </button>
+        </a>
+        <img id="dtes_logo" src="{% static 'media/dtes_logo.png' %}">
+
+        <div id="main-container">
+            <table cellspacing="0">
+                <tr>
+                    <th colspan="2">{{user.username}}</th>
+                </tr>
+                <tr>
+                    <td>Registration date:</td>
+                    <td>{{user.date_joined|date:"d/m/Y"}}</td>
+                </tr>
+                <tr>
+                    <td>Messages:</td>
+                    <td>{{amount}}</td>
+                </tr>
+                <tr>
+                    <td>Last login:</td>
+                    <td>{{user.last_login|date:"d/m/Y"}}</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

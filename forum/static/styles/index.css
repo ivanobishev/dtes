@@ -1,0 +1,82 @@
+body {
+    font-family: tahoma;
+}
+
+#nav-bar {
+    background-color: #404040;
+    color: #fff;
+    padding: 0.5em;
+    margin-bottom: 0.75em;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+#profile-link {
+    color: #fff;
+}
+
+#logout-link {
+    float: right;
+    color: #fff;
+}
+
+#dtes-logo {
+    display: block;
+    margin: auto;
+    width: 10em;
+    height: 8em;
+    border: 1px solid #000; 
+    margin-bottom: 1em;
+}
+
+#main-container {
+    margin: auto;
+    width: 90%;
+    border-left: 1px solid #b3b3b3;
+    border-right: 1px solid #b3b3b3;
+}
+
+@media only screen and (min-width: 600px) {
+    #main-container {
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    #main-container {
+        width: 40%;
+    }
+}
+
+#languages-bar {
+    background-color: #404040;
+    color: #fff;
+    padding: 0.5em;
+}
+
+#main-container table {
+    width: 100%;
+}
+
+.language-box td {
+    border-bottom: 1px solid #b3b3b3;
+    padding: 0.5em;
+}
+
+.description {
+    color: #999999;
+}
+
+#footer {
+    margin-top: 2em;
+    text-align: center;
+    font-size: 0.75em;
+    font-style: italic;
+}
+
+#insta {
+    width: 1.5em;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <title>DTES</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'media/dtes_logo.png' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/index.css' %}">
+    </head>
+    <body>
+        <div id="nav-bar">
+            <nav>
+                Hello,
+                <a id="profile-link" href="{% url 'profile' request.user.pk %}">{{request.user.username}}</a>
+                <a id="logout-link" href="{% url 'loggingout' %}">Log out</a>
+            </nav>
+        </div>
+        <img id="dtes-logo" src="{% static 'media/dtes_logo.png' %}">
+
+        <div id="main-container">
+            <div id="languages-bar">
+                Languages
+            </div>
+            <table cellspacing="0">
+                <tr class="language-box">
+                    <td>
+                        <a href="{% url 'subforum' 1 %}">Persian/Farsi</a>
+                        <br/>&nbsp;
+                        <span class="description">
+                            Learn the official language of Iran and Tajikistan.
+                        </span>
+                    </td>
+                </tr>
+                <tr class="language-box">
+                    <td>
+                        <a href="{% url 'subforum' 2 %}">English</a>
+                        <br/>&nbsp;
+                        <span class="description">
+                            Learn the world bridge language.
+                        </span>
+                    </td>
+                </tr>
+                <tr class="language-box">
+                    <td>
+                        <a href="{% url 'subforum' 3 %}">Spanish</a>
+                        <br/>&nbsp;
+                        <span class="description">
+                            Learn the language of Hispanic America and Spain.
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="footer">
+            <img src="{% static 'media/insta_icon.png' %}" id="insta">
+            <br/>
+            Follow us on Instagram:
+            <br/>
+            @dreamteaminglespanish
+        </div>
+    </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <title>DTES</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'media/dtes_logo.png' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/subforum.css' %}">
+        <script type="text/javascript" src="{% static 'script/subforum.js' %}"></script>
+    </head>
+    <body>
+        <div id="nav-bar">
+            <nav>
+                Hello,
+                <a id="profile-link" href="{% url 'profile' request.user.pk %}">{{request.user.username}}</a>
+                <a id="logout-link" href="{% url 'loggingout' %}">Log out</a>
+            </nav>
+        </div>
+        <a href="{% url 'index' %}">
+            <button id="go-back">
+                Go back
+            </button>
+        </a>
+        {% if category == 1 %}
+            <img id="persian-logo" src="{% static 'media/persian.png' %}">
+        {% elif category == 2 %}
+            <img id="english-logo" src="{% static 'media/english.png' %}">
+        {% elif category == 3 %}
+            <img id="spanish-logo" src="{% static 'media/spanish.png' %}">
+        {% endif %}
+
+        <div id="main-container">
+            {% if pinned_posts or posts %}
+                <div id="posts-bar">
+                    Posts
+                </div>
+                <table cellspacing="0">
+                    {% for i in pinned_posts %}
+                        <tr>
+                            <td class="left">
+                                <img src="{% static 'media/pinned_post.png' %}">
+                            </td>
+                            <td>
+                                <a href="{% url 'reading' i.pk %}">
+                                    {{ i.caption }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {% for i in posts %}
+                        <tr>
+                            <td class="left">
+                                <img src="{% static 'media/normal_post.png' %}">
+                            </td>
+                            <td>
+                                <a href="{% url 'reading' i.pk %}">
+                                    {{ i.caption }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                No posts yet.
+            {% endif %}
+        </div>
+        <button id="modal-button">
+            Create post
+        </button>
+        <div id="modal">
+            <div id="modal-content">
+                <div id="modal-head">
+                    <span id="cross">&times;</span>
+                    <h2>Creating a post</h2>
+                </div>
+                <div id="modal-body">
+                    <form action="{% url 'subforum' category %}" method="post">
+                        {% csrf_token %}
+                        <p>
+                            Title:
+                            <input type="text" name="caption" required>
+                        </p>
+                        <p>
+                            Message:
+                        </p>
+                        <textarea name="message" required></textarea>
+                        {% if request.user.is_superuser %}
+                        <p>
+                            <table>
+                                <tr>
+                                    <td>
+                                        Pinned:
+                                    </td>
+                                    <td>
+                                        <input type="radio" name="pinned" id="yes" value="yes">
+                                        <label for="yes">Yes</label>
+                                        <br/>
+                                        <input type="radio" name="pinned" id="no" value="no">
+                                        <label for="no">No</label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </p>
+                        {% endif %}
+                        <p>
+                            <input type="submit" value="Send">
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <button id="spoiler-button">
+                Show tags
+            </button>
+            <div id="spoiler-container">
+                [b] <b>Bold text</b> [/b]
+                <br/>
+                [u] <u>Underlined text</u> [/u]
+                </br><br/>
+                [center] Centered text [/center]
+                <br/><br/>
+                [hr] Horizontal separator
+            </div>
+        </div>
+    </body>
+</html>

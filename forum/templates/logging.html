@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <title>DTES - Logging</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'media/dtes_logo.png' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/logging.css' %}">
+    </head>
+    <body>
+        <img id="dtes_logo" src="{% static 'media/dtes_logo.png' %}">
+
+        <div id="main-container">
+            <form action="{% url 'logging' %}" method="post">
+                {% csrf_token %}
+                <p>
+                    Username:
+                    <input type="text" name="username">
+                </p>
+                <p>
+                    Password:
+                    <input type="password" name="password">
+                </p>
+                <p>
+                    <input type="submit" value="Log in">
+                </p>
+            </form>
+            {% if wrong %}
+                <div id="error-message">
+                    Credentials provided wrong.
+                </div>
+            {% endif %}
+        </div>
+    </body>
+</html>
